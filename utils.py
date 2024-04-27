@@ -85,9 +85,9 @@ def save_concatenated_embeddings(embeddings, directory='features'):
 
 def load_concatenated_embeddings(directory='features'):
     """Load concatenated embeddings if they exist."""
-    print("Loading embeddings...")
     embeddings_file = os.path.join(directory, 'concatenated_embeddings.npy')
     if os.path.exists(embeddings_file):
+        print("Loading embeddings...")
         return np.load(embeddings_file)
     else:
         return None
