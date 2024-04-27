@@ -3,6 +3,7 @@ from sklearn.metrics import accuracy_score, silhouette_score, adjusted_rand_scor
 
 def cluster_embeddings_mean_shift(embeddings, true_labels):
     """Cluster embeddings using Mean Shift Clustering."""
+    print("Begin clustering embeddings with Mean Shift...")
     ms = MeanShift()
     predicted_labels = ms.fit_predict(embeddings)
     accuracy = accuracy_score(true_labels, predicted_labels)

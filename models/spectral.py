@@ -3,6 +3,7 @@ from sklearn.metrics import accuracy_score, silhouette_score, adjusted_rand_scor
 
 def cluster_embeddings_spectral(embeddings, true_labels, n_clusters):
     """Cluster embeddings using Spectral Clustering."""
+    print("Begin clustering embeddings with Spectral Clustering...")
     spectral = SpectralClustering(n_clusters=n_clusters)
     predicted_labels = spectral.fit_predict(embeddings)
     accuracy = accuracy_score(true_labels, predicted_labels)

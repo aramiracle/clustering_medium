@@ -3,6 +3,7 @@ from sklearn.metrics import accuracy_score, silhouette_score, adjusted_rand_scor
 
 def cluster_embeddings_gmm(embeddings, true_labels, n_components):
     """Cluster embeddings using Gaussian Mixture Models."""
+    print("Begin clustering embeddings with Gaussian Mixture Models...")
     gmm = GaussianMixture(n_components=n_components)
     predicted_labels = gmm.fit_predict(embeddings)
     accuracy = accuracy_score(true_labels, predicted_labels)

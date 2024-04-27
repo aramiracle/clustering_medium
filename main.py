@@ -31,11 +31,11 @@ def main():
 
     # Cluster embeddings using KMeans
     kmeans_results = cluster_embeddings_kmeans(concatenated_embeddings, newsgroups_data.target, n_clusters=20)
-    print_cluster_metrics("KMeans", *kmeans_results)
+    print_cluster_metrics("KMeans", *kmeans_results[1:])
 
     # Cluster embeddings using Hierarchical Clustering
     hierarchical_results = cluster_embeddings_hierarchical(concatenated_embeddings, newsgroups_data.target, n_clusters=20)
-    print_cluster_metrics("Hierarchical Clustering", *hierarchical_results)
+    print_cluster_metrics("Hierarchical Clustering", *hierarchical_results[1:])
 
     # Grid search for best DBSCAN parameters
     best_params = grid_search_dbscan(concatenated_embeddings, newsgroups_data.target)
@@ -43,19 +43,19 @@ def main():
 
     # Cluster embeddings using DBSCAN with best parameters
     dbscan_results = cluster_embeddings_dbscan(concatenated_embeddings, newsgroups_data.target, eps=best_params['eps'], min_samples=best_params['min_samples'])
-    print_cluster_metrics("DBSCAN", *dbscan_results)
+    print_cluster_metrics("DBSCAN", *dbscan_results[1:])
 
     # Cluster embeddings using Mean Shift Clustering
     mean_shift_results = cluster_embeddings_mean_shift(concatenated_embeddings, newsgroups_data.target)
-    print_cluster_metrics("Mean Shift Clustering", *mean_shift_results)
+    print_cluster_metrics("Mean Shift Clustering", *mean_shift_results[1:])
 
     # Cluster embeddings using Gaussian Mixture Models (GMM)
     gmm_results = cluster_embeddings_gmm(concatenated_embeddings, newsgroups_data.target, n_components=20)
-    print_cluster_metrics("Gaussian Mixture Models", *gmm_results)
+    print_cluster_metrics("Gaussian Mixture Models", *gmm_results[1:])
 
     # Cluster embeddings using Spectral Clustering
     spectral_results = cluster_embeddings_spectral(concatenated_embeddings, newsgroups_data.target, n_clusters=20)
-    print_cluster_metrics("Spectral Clustering", *spectral_results)
+    print_cluster_metrics("Spectral Clustering", *spectral_results[1:])
 
 if __name__ == "__main__":
     main()

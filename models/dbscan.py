@@ -6,6 +6,7 @@ from sklearn.metrics import accuracy_score, silhouette_score, adjusted_rand_scor
 
 def grid_search_dbscan(embeddings, true_labels):
     """Grid search for DBSCAN parameters."""
+    print("Begin clustering embeddings with DBSCAN...")
     param_grid = {
         'eps': np.linspace(0.1, 2.0, 20),
         'min_samples': np.arange(1, 10)

@@ -3,6 +3,7 @@ from sklearn.metrics import accuracy_score, silhouette_score, adjusted_rand_scor
 
 def cluster_embeddings_hierarchical(embeddings, true_labels, n_clusters):
     """Cluster embeddings using Hierarchical Clustering."""
+    print("Begin clustering embeddings with Hierarchical Clustering...")
     hierarchical = AgglomerativeClustering(n_clusters=n_clusters)
     predicted_labels = hierarchical.fit_predict(embeddings)
     accuracy = accuracy_score(true_labels, predicted_labels)
