@@ -43,7 +43,7 @@ def main():
     print_cluster_metrics("Hierarchical Clustering", *hierarchical_results[1:])
 
     # Cluster embeddings using Birch
-    birch_results = cluster_embeddings_hierarchical(concatenated_embeddings, labels, n_clusters=5)
+    birch_results = cluster_embeddings_birch(concatenated_embeddings, labels, n_clusters=5)
     print_cluster_metrics("Birch", *birch_results[1:])
 
     # Grid search for best DBSCAN parameters
@@ -60,7 +60,7 @@ def main():
 
     # Create a DataFrame to store the cluster labels
     results_df = pd.DataFrame({
-        'Real_Labels' : labels,
+        'Real_Labels' : df['Category'],
         'KMeans_Labels': kmeans_results[0],
         'Mini_Batch_KMeans' : mini_batch_kmeans_results[0],
         'Hierarchical_Labels': hierarchical_results[0],

@@ -4,7 +4,7 @@ from sklearn.metrics import fowlkes_mallows_score, silhouette_score, adjusted_ra
 def cluster_embeddings_mini_batch_kmeans(embeddings, true_labels, n_clusters):
     """Cluster embeddings using Mini Batch KMeans."""
     print("Begin clustering embeddings with Mini Batch KMeans...")
-    kmeans = MiniBatchKMeans(n_clusters=n_clusters, batch_size=10, random_state=42)
+    kmeans = MiniBatchKMeans(n_clusters=n_clusters, batch_size=20, random_state=24)
     predicted_labels = kmeans.fit_predict(embeddings)
     fowlkes_mallows = fowlkes_mallows_score(true_labels, predicted_labels)
     silhouette = silhouette_score(embeddings, predicted_labels)

@@ -18,7 +18,7 @@ tsne = TSNE(n_components=2, random_state=42)
 embeddings_2d = tsne.fit_transform(embeddings)
 
 # Plot the embeddings in 2D with colored labels for each label column
-plt.figure(figsize=(20, 12))
+plt.figure(figsize=(20, 12),dpi=600)
 for i, category in enumerate(categories):
     plt.subplot(2, 3, i+1)
     for label_value in np.unique(labels[:, i]):
