@@ -68,7 +68,7 @@ def main():
         'GMM_Labels': gmm_results[0],
     })
 
-    results_df.to_csv('result_labels.csv')
+    results_df.to_csv('results_labels.csv')
 
 if __name__ == "__main__":
     main()
