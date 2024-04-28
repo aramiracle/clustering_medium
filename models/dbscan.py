@@ -34,8 +34,8 @@ def grid_search_dbscan(embeddings, true_labels):
     
     # Update parameter grid
     param_grid = {
-        'eps': np.logspace(np.log10(min_dist), np.log10(max_dist), 30),
-        'min_samples': [1, 3, 5, 10, 20]
+        'eps': np.logspace(np.log10(min_dist), np.log10(max_dist), 10),
+        'min_samples': [1, 3, 5, 10, 20, 50, 100]
     }
 
     # Instantiate DBSCAN object

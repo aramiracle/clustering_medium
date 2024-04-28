@@ -1,11 +1,11 @@
-from sklearn.mixture import GaussianMixture
+from sklearn.cluster import Birch
 from sklearn.metrics import fowlkes_mallows_score, silhouette_score, adjusted_rand_score, normalized_mutual_info_score
 
-def cluster_embeddings_gmm(embeddings, true_labels, n_components):
-    """Cluster embeddings using Gaussian Mixture Models."""
-    print("Begin clustering embeddings with Gaussian Mixture Models...")
-    gmm = GaussianMixture(n_components=n_components, random_state=42)
-    predicted_labels = gmm.fit_predict(embeddings)
+def cluster_embeddings_birch(embeddings, true_labels, n_clusters):
+    """Cluster embeddings using Birch."""
+    print("Begin clustering embeddings with Birch...")
+    hierarchical = Birch(n_clusters=n_clusters)
+    predicted_labels = hierarchical.fit_predict(embeddings)
     fowlkes_mallows = fowlkes_mallows_score(true_labels, predicted_labels)
     silhouette = silhouette_score(embeddings, predicted_labels)
     adjusted_rand = adjusted_rand_score(true_labels, predicted_labels)

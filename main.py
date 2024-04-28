@@ -3,7 +3,8 @@ from utils import load_concatenated_embeddings, extract_and_concatenate_embeddin
 
 from models.kmeans import cluster_embeddings_kmeans
 from models.hierarchical import cluster_embeddings_hierarchical
-from models.dbscan import grid_search_dbscan, cluster_embeddings_dbscan
+from models.birch import cluster_embeddings_birch
+# from models.dbscan import grid_search_dbscan, cluster_embeddings_dbscan
 from models.gmm import cluster_embeddings_gmm
 from models.mini_batch_kmeans import cluster_embeddings_mini_batch_kmeans
 
@@ -41,13 +42,17 @@ def main():
     hierarchical_results = cluster_embeddings_hierarchical(concatenated_embeddings, labels, n_clusters=5)
     print_cluster_metrics("Hierarchical Clustering", *hierarchical_results[1:])
 
+    # Cluster embeddings using Birch
+    birch_results = cluster_embeddings_hierarchical(concatenated_embeddings, labels, n_clusters=5)
+    print_cluster_metrics("Birch", *birch_results[1:])
+
     # Grid search for best DBSCAN parameters
-    best_params = grid_search_dbscan(concatenated_embeddings, labels)
-    print("Best DBSCAN parameters:", best_params)
+    # best_params = grid_search_dbscan(concatenated_embeddings, labels)
+    # print("Best DBSCAN parameters:", best_params)
 
     # Cluster embeddings using DBSCAN with best parameters
-    dbscan_results = cluster_embeddings_dbscan(concatenated_embeddings, labels, eps=best_params['eps'], min_samples=best_params['min_samples'])
-    print_cluster_metrics("DBSCAN", *dbscan_results[1:])
+    # dbscan_results = cluster_embeddings_dbscan(concatenated_embeddings, labels, eps=best_params['eps'], min_samples=best_params['min_samples'])
+    # print_cluster_metrics("DBSCAN", *dbscan_results[1:])
 
     # Cluster embeddings using Gaussian Mixture Models (GMM)
     gmm_results = cluster_embeddings_gmm(concatenated_embeddings, labels, n_components=5)
@@ -59,7 +64,7 @@ def main():
         'KMeans_Labels': kmeans_results[0],
         'Mini_Batch_KMeans' : mini_batch_kmeans_results[0],
         'Hierarchical_Labels': hierarchical_results[0],
-        'DBSCAN_Labels': dbscan_results[0],
+        'Birch_Labels': birch_results[0],
         'GMM_Labels': gmm_results[0],
     })
 
