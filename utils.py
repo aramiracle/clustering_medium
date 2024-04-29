@@ -48,10 +48,11 @@ def load_concatenated_embeddings(directory='features'):
     else:
         return None
     
-def print_cluster_metrics(method_name, fowlkes_mallows, silhouette, adjusted_rand, nmi):
+def print_cluster_metrics(method_name, silhouette, fowlkes_mallows, adjusted_rand, nmi, completeness):
     """Print clustering metrics."""
     print(f"Method: {method_name}")
-    print(f"Fowlkes Mallows Score: {round(fowlkes_mallows, 4)}")
     print(f"Silhouette Score: {round(silhouette, 4)}")
+    print(f"Fowlkes Mallows Score: {round(fowlkes_mallows, 4)}")
     print(f"Adjusted Rand Score: {round(adjusted_rand, 4)}")
-    print(f"Normalized Mutual Information (NMI): {round(nmi, 4)}\n")
+    print(f"Normalized Mutual Information (NMI): {round(nmi, 4)}")
+    print(f"Completeness score: {round(completeness, 4)}\n")

@@ -4,7 +4,6 @@ from utils import load_concatenated_embeddings, extract_and_concatenate_embeddin
 from models.kmeans import cluster_embeddings_kmeans
 from models.hierarchical import cluster_embeddings_hierarchical
 from models.birch import cluster_embeddings_birch
-# from models.dbscan import grid_search_dbscan, cluster_embeddings_dbscan
 from models.gmm import cluster_embeddings_gmm
 from models.mini_batch_kmeans import cluster_embeddings_mini_batch_kmeans
 
@@ -45,14 +44,6 @@ def main():
     # Cluster embeddings using Birch
     birch_results = cluster_embeddings_birch(concatenated_embeddings, labels, n_clusters=5)
     print_cluster_metrics("Birch", *birch_results[1:])
-
-    # Grid search for best DBSCAN parameters
-    # best_params = grid_search_dbscan(concatenated_embeddings, labels)
-    # print("Best DBSCAN parameters:", best_params)
-
-    # Cluster embeddings using DBSCAN with best parameters
-    # dbscan_results = cluster_embeddings_dbscan(concatenated_embeddings, labels, eps=best_params['eps'], min_samples=best_params['min_samples'])
-    # print_cluster_metrics("DBSCAN", *dbscan_results[1:])
 
     # Cluster embeddings using Gaussian Mixture Models (GMM)
     gmm_results = cluster_embeddings_gmm(concatenated_embeddings, labels, n_components=5)

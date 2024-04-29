@@ -1,26 +1,23 @@
 import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.cluster import DBSCAN
-from sklearn.metrics import fowlkes_mallows_score, silhouette_score, adjusted_rand_score, normalized_mutual_info_score, pairwise_distances
+from sklearn.metrics import silhouette_score, fowlkes_mallows_score, adjusted_rand_score, normalized_mutual_info_score, completeness_score, pairwise_distances
 
 def cluster_embeddings_dbscan(embeddings, true_labels, eps, min_samples):
     """Cluster embeddings using DBSCAN."""
     dbscan = DBSCAN(eps=eps, min_samples=min_samples)
     predicted_labels = dbscan.fit_predict(embeddings)
-    if len(np.unique(predicted_labels)) > 1:  # Check if there's more than one cluster
-        fowlkes_mallows = fowlkes_mallows_score(true_labels, predicted_labels)
-        silhouette = silhouette_score(embeddings, predicted_labels)
-        adjusted_rand = adjusted_rand_score(true_labels, predicted_labels)
-        nmi = normalized_mutual_info_score(true_labels, predicted_labels)
-    else:
-        # If only one cluster, set scores to 0
-        fowlkes_mallows, silhouette, adjusted_rand, nmi = 0, 0, 0, 0
-    return predicted_labels, fowlkes_mallows, silhouette, adjusted_rand, nmi
+    silhouette = silhouette_score(embeddings, predicted_labels)
+    fowlkes_mallows = fowlkes_mallows_score(true_labels, predicted_labels)
+    adjusted_rand = adjusted_rand_score(true_labels, predicted_labels)
+    nmi = normalized_mutual_info_score(true_labels, predicted_labels)
+    c = completeness_score(true_labels, predicted_labels)
+    return predicted_labels, silhouette, fowlkes_mallows, adjusted_rand, nmi, c
 
 def custom_scorer(estimator, X, true_labels):
     """Custom scorer based on Fowlkes-Mallows score for DBSCAN."""
     predicted_labels = estimator.fit_predict(X)
-    score = fowlkes_mallows_score(true_labels, predicted_labels)
+    score = completeness_score(true_labels, predicted_labels)
     return -score
 
 def grid_search_dbscan(embeddings, true_labels):

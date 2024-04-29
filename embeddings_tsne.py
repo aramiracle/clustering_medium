@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 embeddings = np.load('features/concatenated_embeddings.npy')
 
 # Load the DataFrame with labels
-df = pd.read_csv('result_labels.csv')
+df = pd.read_csv('results_labels.csv')
 
 # Extract labels and convert them to arrays
 labels = df.values[:, 1:]  # Assuming the first column is index
