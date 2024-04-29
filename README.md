@@ -84,3 +84,5 @@ The normalized mutual information score is a measure of the mutual dependence be
 ## Acknowledgments
 - This project utilizes the Sentence Transformers library for generating embeddings from articles.
 - The t-SNE visualization is implemented using the scikit-learn library.
+
+Finally there is a medium article you can read for deeper insight. This is a [link](https://medium.com/@a.r.amouzad.m/classic-machine-learning-part-4-4-clustering-on-text-dataset-e12520edd2f0) to story.
